@@ -24,307 +24,93 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-  console.log("device ready!");
-
-  // check wechat app installed
-  window.Wechat.isWXAppInstalled(
-    function (response) {
-      document.getElementById("installResult").innerText = response;
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-
-  window.Wechat.getSDKVersion(
-    function (response) {
-      document.getElementById("versionResult").innerText = response;
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
+    console.log("device ready!");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("loginButton").addEventListener("click", sendAuthReq);
-  document
-    .getElementById("scanButton")
-    .addEventListener("click", sendAuthScanReq);
-  document.getElementById("payButton").addEventListener("click", sendPayReq);
-  document
-    .getElementById("shareTextButton")
-    .addEventListener("click", shareText);
-  document
-    .getElementById("shareImageButton")
-    .addEventListener("click", shareImage);
-  document
-    .getElementById("shareVideoButton")
-    .addEventListener("click", shareVideo);
-  document
-    .getElementById("shareWebPageButton")
-    .addEventListener("click", shareWebPage);
-  document
-    .getElementById("shareMiniProgramButton")
-    .addEventListener("click", shareMiniProgram);
-  document
-    .getElementById("launchMiniProgramButton")
-    .addEventListener("click", launchMiniProgram);
-  document
-    .getElementById("openCustomerServiceChatButton")
-    .addEventListener("click", openCustomerServiceChat);
-  document
-    .getElementById("launchWechatButton")
-    .addEventListener("click", launchWechat);
-
-  document
-    .getElementById("checkUniversalLinkButton")
-    .addEventListener("click", checkUniversalLink);
-  document.getElementById("startLogButton").addEventListener("click", startLog);
-  document.getElementById("stopLogButton").addEventListener("click", stopLog);
+    document
+        .getElementById("scanButton")
+        .addEventListener("click", scan);
+    document
+        .getElementById("continuousScanButton")
+        .addEventListener("click", continuousScan);
+    document
+        .getElementById("stopContinuousScanButton")
+        .addEventListener("click", stopContinuousScan);
+    document.getElementById("encodeButton").addEventListener("click", encode);
 });
 
-document.addEventListener("wechat.onQrcodeScanned", function () {
-  console.log("onQrcodeScanned!!!");
-}, false);
+// document.addEventListener("wechat.onQrcodeScanned", function () {
+//   console.log("onQrcodeScanned!!!");
+// }, false);
+//
+// document.addEventListener("wechat.onAuthFinish", function () {
+//   console.log("onAuthFinish!!!");
+// }, false);
+//
+// document.addEventListener("wechat.apiInit", function (event) {
+//     console.log("apiInit!!!");
+//     console.log(event.result);
+//    document.getElementById("apiResult").innerText = event.result;
+// }, false);
+//
+// document.addEventListener(
+//   "wechat.onLog",
+//   function (message) {
+//     console.log(message);
+//   },
+//   false
+// );
 
-document.addEventListener("wechat.onAuthFinish", function () {
-  console.log("onAuthFinish!!!");
-}, false);
 
-document.addEventListener("wechat.apiInit", function (event) {
-    console.log("apiInit!!!");
-    console.log(event.result);
-   document.getElementById("apiResult").innerText = event.result;
-}, false);
-
-document.addEventListener(
-  "wechat.onLog",
-  function (message) {
-    console.log(message);
-  },
-  false
-);
-
-
-function checkUniversalLink() {
-  window.Wechat.checkUniversalLinkReady(
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
+function scan() {
+    window.BarcodeScanner.scan( {
+//          desiredFormats: "QR_CODE,UPC_A,UPC_E,EAN_8,EAN_13", // 传递 desiredFormats 以指定扫描的条码格式
+            prompt: "请将条形码置于取景框内扫描", // 传递 prompt 以设置扫描时的提示信息
+            cameraId: 0, // 传递 cameraId 以指定要使用的摄像头（0 为后置摄像头）
+            beepEnabled: true, // 传递 beepEnabled 以控制扫描成功时是否发出声音
+            timeout: 10000, // 传递 timeout 以设置扫描的超时时间
+            barcodeImageEnabled: true // 传递 barcodeImageEnabled 以控制是否保存扫描到的条形码图像
+        },
+        function (response) {
+            alert(JSON.stringify(response));
+        },
+        function (error) {
+            alert(JSON.stringify(error));
+        }
+    );
 }
 
-function startLog() {
-  window.Wechat.startLog(
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
+function continuousScan() {
+    window.BarcodeScanner.continuousScan( {
+            desiredFormats: "QR_CODE,UPC_A,UPC_E,EAN_8,EAN_13", // 传递 desiredFormats 以指定扫描的条码格式
+            prompt: "请将条形码置于取景框内扫描", // 传递 prompt 以设置扫描时的提示信息
+            cameraId: 0, // 传递 cameraId 以指定要使用的摄像头（0 为后置摄像头）
+            beepEnabled: true, // 传递 beepEnabled 以控制扫描成功时是否发出声音
+            y: 200,
+            height: 500
+        },
+        function (response) {
+            alert(JSON.stringify(response));
+        },
+        function (error) {
+            alert(JSON.stringify(error));
+        }
+    );
 }
 
-function stopLog() {
-  window.Wechat.stopLog(
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
+function stopContinuousScan() {
+    window.BarcodeScanner.stopContinuousScan(
+        function (response) {
+            alert(JSON.stringify(response));
+        },
+        function (error) {
+            alert(JSON.stringify(error));
+        }
+    );
 }
 
-function launchWechat() {
-  window.Wechat.launchWechatApp(
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
 
-function sendAuthReq() {
-  window.Wechat.login(
-    { scope: "snsapi_userinfo", state: "wechat_sdk_demo_test" },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function sendAuthScanReq() {
-  window.Wechat.auth(
-    { scope: "111", nonceStr: "2222", timeStamp: "xxxx", signature: "xxxx" },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function shareText() {
-  window.Wechat.shareText(
-    {
-      text: "test",
-      scene: 0,
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function shareImage() {
-  window.Wechat.shareImage(
-    {
-      imagePath: "www/img/logo.png",
-      scene: 0,
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function shareVideo() {
-  window.Wechat.shareVideo(
-    {
-      title: "video",
-      description: "this is a video",
-      videoUrl: "http://vjs.zencdn.net/v/oceans.mp4",
-      thumbPath: "www/img/logo.png",
-      scene: 0,
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function shareWebPage() {
-  window.Wechat.shareWebpage(
-    {
-      webpageUrl: "https://byteee.fund",
-//      title: "webpage",
-      description: "this is a webpage",
-      thumbPath: "www/img/logo.png",
-//      scene: 0,
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function shareMiniProgram() {
-  window.Wechat.shareMiniProgram(
-    {
-      webpageUrl: "https://byteee.fund",
-      title: "miniprogram",
-      description: "this is a webpage",
-      imagePath: "www/img/logo.png",
-      userName: "gh_67210fc11b59",
-      path: "/pages/index",
-      miniprogramType: 0,
-      withShareTicket: true,
-      scene: 0,
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function shareWebPage() {
-  window.Wechat.shareWebPage(
-    {
-      webpageUrl: "https://byteee.fund",
-      title: "webpage",
-      description: "this is a webpage",
-      thumbPath: "www/img/logo.png",
-      scene: 0,
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function launchMiniProgram() {
-  window.Wechat.launchMiniProgram(
-    {
-      userName: "gh_67210fc11b59",
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function openCustomerServiceChat() {
-  window.Wechat.openCustomerServiceChat(
-    {
-      corpId: "ww36daeb5459917edd",
-      url: "https://work.weixin.qq.com/kfid/kfc1c139cd3beb2f516",
-    },
-    function (response) {
-      alert(JSON.stringify(response));
-    },
-    function (error) {
-      alert(JSON.stringify(error));
-    }
-  );
-}
-
-function sendPayReq() {
-  window.Wechat.requestPayment({
-    appid: "wxd930ea5d5a258f4f",
-    mchId: "1900000109",
-    prepayid: "1101000000140415649af9fc314aa427",
-    package: "Sign=WXPay",
-    noncestr: "1101000000140429eb40476f8896f4c9",
-    timestamp: "1398746574",
-    sign:
-      "oR9d8PuhnIc+YZ8cBHFCwfgpaK9gd7vaRvkYD7rthRAZ/X+QBhcCYL21N7cHCTUxbQ+EAt6Uy+lwSN22f5YZvI45MLko8Pfso0jm46v5hqcVwrk6uddkGuT+Cdvu4WBqDzaDjnNa5UK3GfE1Wfl2gHxIIY5lLdUgWFts17D4WuolLLkiFZV+JSHMvH7eaLdT9N5GBovBwu5yYKUR7skR8Fu+LozcSqQixnlEZUfyE55feLOQTUYzLmR9pNtPbPsu6WVhbNHMS3Ss2+AehHvz+n64GDmXxbX++IOBvm2olHu3PsOUGRwhudhVf7UcGcunXt8cqNjKNqZLhLw4jq/xDg==",
-  },
-  function (response) {
-    alert(JSON.stringify(response));
-  },
-  function (error) {
-    alert(JSON.stringify(error));
-  });
+function encode() {
+    alert(2);
 }

@@ -20,63 +20,52 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
-            https://cordova.apache.org/docs/en/latest/
-        Some notes:
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
-        <title>Cordova Plugin Wechat Demo</title>
-    </head>
-    <body>
-        <div class="app">
-            <img src="img/icon64_wx_logo.png">
-            <h1>Cordova Plugin Wechat Demo</h1>
-            <div class="button-container">
-                <button id="loginButton">Login</button>
-                <button id="scanButton">Scan</button>
-                <button id="payButton">Pay</button>
-                <button id="shareTextButton">ShareText</button>
-                <button id="shareImageButton">ShareImage</button>
-                <button id="shareWebPageButton">ShareWebPage</button>
-                <button id="shareVideoButton">shareVideo</button>
-                <button id="shareMiniProgramButton">shareMiniProgram</button>
-                <button id="launchMiniProgramButton">launchMiniProgram</button>
-                <button id="openCustomerServiceChatButton">openCustomerServiceChat</button>
-                <button id="launchWechatButton">launchWechat</button>
-            </div>
-            <h2>FOR IOS ONLY</h2>
-            <div class="button-container">
-                <button id="checkUniversalLinkButton">checkUniversalLinkReady</button>
-                <button id="startLogButton">startLog</button>
-                <button id="stopLogButton">stopLog</button>
-            </div>
-            <div class="">
-                <ul>
-                    <li>APP INSTALLED: <span id="installResult"></span></li>
-                    <li>API INIT: <span id="apiResult"></span></li>
-                    <li>SDK VERSION: <span id="versionResult"></span></li>
-                </ul>
-            </div>
-        </div>
+<head>
+    <meta charset="utf-8">
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
+        https://cordova.apache.org/docs/en/latest/
+    Some notes:
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Cordova Plugin Barcode Scanner Demo</title>
+</head>
+<body>
+<div class="app">
+    <img src="img/icon64_wx_logo.png">
+    <h1>Cordova Plugin Barcode Scanner Demo</h1>
+    <div class="button-container">
+        <button id="scanButton">Scan</button>
+        <button id="continuousScanButton">Start Continuous Scan</button>
+        <button id="stopContinuousScanButton">Stop Continuous Scan</button>
+        <button id="encodeButton">Encode</button>
 
-        <div class="footer">
-            <p>copyright by bsf @ 2024</p>
-            <a>www.byteee.fund</a>
+    </div>
 
-        </div>
-       
-        <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
-    </body>
+    <!--            <div class="">-->
+    <!--                <ul>-->
+    <!--                    <li>APP INSTALLED: <span id="installResult"></span></li>-->
+    <!--                    <li>API INIT: <span id="apiResult"></span></li>-->
+    <!--                    <li>SDK VERSION: <span id="versionResult"></span></li>-->
+    <!--                </ul>-->
+    <!--            </div>-->
+</div>
+
+<div class="footer">
+    <p>copyright by bsf @ 2024</p>
+    <a href="https://byteee.fund" target="_blank">www.byteee.fund</a>
+
+</div>
+
+<script src="cordova.js"></script>
+<script src="js/index.js"></script>
+</body>
 </html>

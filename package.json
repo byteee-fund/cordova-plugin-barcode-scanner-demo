@@ -15,8 +15,7 @@
   "devDependencies": {
     "cordova-android": "^12.0.1",
     "cordova-ios": "^7.0.1",
-    "corodva-plugin-barcode-scanner": "file:../cordova-plugin-barcode-scanner",
-    "fund.byteee.wechat": "file:../cordova-plugin-wechat"
+    "corodva-plugin-barcode-scanner": "file:../cordova-plugin-barcode-scanner"
   },
   "cordova": {
     "plugins": {},
