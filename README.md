@@ -1,7 +1,6 @@
 ## 关于
 
-此项目是[cordova-plugin-wechat](https://byteee.fund/project/cordova-plugin-wechat)的demo工程（基于corodva创建）
-
+此项目是[cordova-plugin-wechat](https://byteee.fund/project/cordova-plugin-barcode-scanner)基于Cordova创建的Demo工程
 
 
 ![screenshot](screenshot.jpeg)
@@ -12,7 +11,8 @@
 ```shell
 cordova platform add android 
 cordova platform add ios
-cordova plugin add cordova插件目录 --variable APP_ID=wx1231231232132 --variable UNIVERSAL_LINK=https://xxxx
+
+cordova plugin add ../cordova-plugin-barcode-scanner
 
 cordova build android
 cordova build ios

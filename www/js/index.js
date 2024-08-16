@@ -35,9 +35,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("continuousScanButton")
         .addEventListener("click", continuousScan);
     document
-        .getElementById("stopContinuousScanButton")
-        .addEventListener("click", stopContinuousScan);
-    document.getElementById("encodeButton").addEventListener("click", encode);
+        .getElementById("stopScanButton")
+        .addEventListener("click", stopScan);
+
+    // document.getElementById("encodeButton").addEventListener("click", encode);
 });
 
 // document.addEventListener("wechat.onQrcodeScanned", function () {
@@ -65,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function scan() {
     window.BarcodeScanner.scan( {
+            mode: 1,
 //          desiredFormats: "QR_CODE,UPC_A,UPC_E,EAN_8,EAN_13", // 传递 desiredFormats 以指定扫描的条码格式
             prompt: "请将条形码置于取景框内扫描", // 传递 prompt 以设置扫描时的提示信息
             cameraId: 0, // 传递 cameraId 以指定要使用的摄像头（0 为后置摄像头）
@@ -82,7 +84,8 @@ function scan() {
 }
 
 function continuousScan() {
-    window.BarcodeScanner.continuousScan( {
+    window.BarcodeScanner.scan( {
+            mode: 2,
             desiredFormats: "QR_CODE,UPC_A,UPC_E,EAN_8,EAN_13", // 传递 desiredFormats 以指定扫描的条码格式
             prompt: "请将条形码置于取景框内扫描", // 传递 prompt 以设置扫描时的提示信息
             cameraId: 0, // 传递 cameraId 以指定要使用的摄像头（0 为后置摄像头）
@@ -99,8 +102,8 @@ function continuousScan() {
     );
 }
 
-function stopContinuousScan() {
-    window.BarcodeScanner.stopContinuousScan(
+function stopScan() {
+    window.BarcodeScanner.stopScan(
         function (response) {
             alert(JSON.stringify(response));
         },
