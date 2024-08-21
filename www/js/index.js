@@ -90,11 +90,11 @@ function continuousScan() {
             prompt: "请将条形码置于取景框内扫描", // 传递 prompt 以设置扫描时的提示信息
             cameraId: 0, // 传递 cameraId 以指定要使用的摄像头（0 为后置摄像头）
             beepEnabled: true, // 传递 beepEnabled 以控制扫描成功时是否发出声音
-            y: 200,
-            height: 500
+            y: 0,
+            height: 300
         },
         function (response) {
-            alert(JSON.stringify(response));
+            console.log(JSON.stringify(response));
         },
         function (error) {
             alert(JSON.stringify(error));
@@ -111,9 +111,4 @@ function stopScan() {
             alert(JSON.stringify(error));
         }
     );
-}
-
-
-function encode() {
-    alert(2);
 }
