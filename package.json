@@ -15,6 +15,7 @@
   "devDependencies": {
     "cordova-android": "^13.0.0",
     "cordova-ios": "^7.1.1",
+    "cordova-plugin-barcode-scanner": "file:../cordova-plugin-barcode-scanner",
     "corodva-plugin-barcode-scanner": "file:../cordova-plugin-barcode-scanner"
   },
   "cordova": {
